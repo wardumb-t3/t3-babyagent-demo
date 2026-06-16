@@ -2,7 +2,10 @@ import { z } from "zod";
 
 const envSchema = z.object({
   TELEGRAM_BOT_TOKEN: z.string().min(1),
-  ANTHROPIC_API_KEY: z.string().min(1),
+  // LLM provider: "claude" (default) or "groq" (free, for testing)
+  LLM_PROVIDER: z.enum(["claude", "groq"]).default("claude"),
+  ANTHROPIC_API_KEY: z.string().optional(),
+  GROQ_API_KEY: z.string().optional(),
   DATABASE_URL: z.string().optional(),
   TERMINAL3_ENABLED: z.enum(["true", "false"]).default("false"),
   TERMINAL3_API_KEY: z.string().optional(),
